@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  fastapi-app:
+    image: fast_api_base
+    ports:
+      - "4000:80"
+    volumes:
+      - .:/app
+    command: uvicorn app.app.main:app --host 0.0.0.0 --port 80 --reload
