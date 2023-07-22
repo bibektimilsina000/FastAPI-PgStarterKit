@@ -7,4 +7,25 @@ services:
       - "4000:80"
     volumes:
       - .:/app
+    depends_on:
+      - db
     command: uvicorn app.app.main:app --host 0.0.0.0 --port 80 --reload
+
+  db:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/pgdata
+    env_file:
+      - .env
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    # If you're using Docker Swarm and need the constraint, uncomment the below:
+    # deploy:
+    #   placement:
+    #     constraints:
+    #       - node.labels.${STACK_NAME?Variable not set}.postgres_data == true
+
+volumes:
+  postgres_data:

@@ -20,9 +20,7 @@ class Settings(BaseSettings):
 
     SERVER_NAME: str
     SERVER_HOST: AnyHttpUrl
-    # BACKEND_CORS_ORIGINS is a JSON-formatted list of origins
-    # e.g: '["http://localhost", "http://localhost:4200", "http://localhost:3000", \
-    # "http://localhost:8080", "http://local.dockertoolbox.tiangolo.com"]'
+
     BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = []
 
     @validator("BACKEND_CORS_ORIGINS", pre=True)
@@ -46,6 +44,7 @@ class Settings(BaseSettings):
     POSTGRES_USER: str
     POSTGRES_PASSWORD: str
     POSTGRES_DB: str
+
     SQLALCHEMY_DATABASE_URI: Optional[PostgresDsn] = None
 
     @validator("SQLALCHEMY_DATABASE_URI", pre=True)
@@ -56,6 +55,7 @@ class Settings(BaseSettings):
         password = values.get("POSTGRES_PASSWORD")
         host = values.get("POSTGRES_SERVER")
         db = values.get("POSTGRES_DB")
+
         if all([user, password, host, db]):
             return f"postgresql://{user}:{password}@{host}/{db}"
         else:
