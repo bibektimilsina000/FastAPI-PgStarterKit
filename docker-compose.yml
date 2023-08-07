@@ -2,14 +2,16 @@ version: '3.8'
 
 services:
   fastapi-app:
+    build: .
     image: fast_api_base
+
     ports:
       - "4000:80"
     volumes:
       - .:/app
     depends_on:
       - db
-    command: uvicorn app.app.main:app --host 0.0.0.0 --port 80 --reload
+    command: /bin/bash -c "/app/pre-start.sh && uvicorn main:app --host 0.0.0.0 --port 80 --reload"
 
   db:
     image: postgres:13
@@ -21,11 +23,6 @@ services:
       - .env
     environment:
       - PGDATA=/var/lib/postgresql/data/pgdata
-    # If you're using Docker Swarm and need the constraint, uncomment the below:
-    # deploy:
-    #   placement:
-    #     constraints:
-    #       - node.labels.${STACK_NAME?Variable not set}.postgres_data == true
 
 volumes:
   postgres_data:

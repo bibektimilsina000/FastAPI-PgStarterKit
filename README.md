@@ -1,4 +1,4 @@
-# 🚀 full-stack-fastapi-postgresql - The Backend Saga! 🎉
+# 🚀  fastapi-postgresql-starterkit - The Backend Saga! 🎉
 
 ![Badge](https://img.shields.io/badge/Made%20with-FastAPI-green)
 ![Badge](https://img.shields.io/badge/PostgreSQL-For%20All%20Your%20Data%20Needs-blue)
