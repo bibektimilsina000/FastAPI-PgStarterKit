@@ -11,7 +11,7 @@ services:
       - .:/app
     depends_on:
       - db
-    command: /bin/bash -c "/app/pre-start.sh && uvicorn main:app --host 0.0.0.0 --port 80 --reload"
+    command: /bin/bash -c "/app/pre-start.sh && uvicorn app.main:app --host 0.0.0.0 --port 80 --reload"
 
   db:
     image: postgres:13
