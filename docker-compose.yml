@@ -14,7 +14,9 @@ services:
     command: /bin/bash -c "/app/pre-start.sh && uvicorn app.main:app --host 0.0.0.0 --port 80 --reload"
 
   db:
+    container_name: postgresql_db
     image: postgres:13
+
     ports:
       - "5432:5432"
     volumes:
@@ -23,6 +25,16 @@ services:
       - .env
     environment:
       - PGDATA=/var/lib/postgresql/data/pgdata
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    env_file:
+      - .env
+    depends_on:
+      - db
+    ports:
+      - 5050:80
 
 volumes:
   postgres_data:
