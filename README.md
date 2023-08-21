@@ -32,7 +32,7 @@ docker-compose up --build
 ```
 
 
-Visit [http://127.0.0.1:8000/docs](http://localhost:8000/docs) for the interactive FastAPI docs!
+Visit  (http://localhost:8000/docs) for the interactive FastAPI docs!
 
 ## Contribute! 🤝
 
