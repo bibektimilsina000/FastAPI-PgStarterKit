@@ -2,3 +2,5 @@ __pycache__
 .vscode
 env
 app.egg-info
+.coverage
+.pytest_cache
