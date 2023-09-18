@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   fastapi-app:
+    container_name: fastapi-app
     build: .
     image: fast_api_base
 
