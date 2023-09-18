@@ -27,7 +27,6 @@ MANDATORY = {
     "POSTGRES_USER": random_lower_string(),
     "PROJECT_NAME": random_lower_string(),
     "SERVER_HOST": random_url(),
-    "SERVER_NAME": random_lower_string(),
 }
 
 

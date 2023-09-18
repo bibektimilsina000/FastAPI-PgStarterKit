@@ -26,13 +26,22 @@ I took the majestic backend of the original `full-stack-fastapi-postgresql` proj
 
 To set this baby up:
 
+If you don't have one yet, set up a .env file with your configuration.  For a basic version for local testing use:  
+```bash
+cp dot-env-template .env
+```
+Be aware that .env is *excluded from git* because it contains secrets, API keys and so on.  **Never put your .env file into git.**
+
+Then build and start the test/debug stack with:
 ```bash
 docker-compose up --build
-
 ```
 
-
-Visit  (http://localhost:4000/docs) for the interactive FastAPI docs!
+Then:
+- Visit http://localhost:4000/docs for the interactive API docs (Swagger). For initial super-username and password to first authenticate see your **.env** file.
+- Modify your code, which is linked into the *fastapi-app* container and watch uvicorn auto-restart your app when changes have been made.
+- Run pytest in your container with `docker exec fastapi-app bash ./test.sh [optional parameters]`
+- Visit http://localhost:5050/ for the PostgreSQL administrator. Upon first use you'll need to register your DB server using your **.env** file.
 
 ## Contribute! 🤝
 
