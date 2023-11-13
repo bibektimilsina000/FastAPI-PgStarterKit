@@ -5,11 +5,13 @@ from dotenv import load_dotenv
 from pydantic import (AnyHttpUrl, AnyUrl, EmailStr, HttpUrl, PostgresDsn,
                       ValidationInfo, field_validator)
 from pydantic_settings import BaseSettings, SettingsConfigDict
+import os
 
+load_dotenv()
 
 class Settings(BaseSettings):
     API_V1_STR: str = "/api/v1"
-    SECRET_KEY: str = secrets.token_urlsafe(32)
+    SECRET_KEY: str = os.getenv("ACCESS_TOKEN_SECRET", "") #secrets.token_urlsafe(32)
     # 60 minutes * 24 hours * 8 days = 8 days
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
     SERVER_HOST: AnyHttpUrl
@@ -86,5 +88,4 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(case_sensitive=True)
 
 
-load_dotenv()
 settings = Settings()
